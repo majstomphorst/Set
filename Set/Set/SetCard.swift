@@ -54,9 +54,9 @@ struct SetCard: Equatable, CustomStringConvertible {
     }
     
     enum Symbol: Int, CustomStringConvertible {
-        case triangle
-        case circle
-        case square
+        case triangle = 1;
+        case circle = 2;
+        case square = 3;
         
         static var all = [Symbol.triangle, .circle, .square];
         

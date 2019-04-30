@@ -27,24 +27,35 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="129.5" height="28"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Help"/>
+                                                <connections>
+                                                    <action selector="touchHelp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Eyf-PS-rNa"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDP-lv-sYj">
                                                 <rect key="frame" x="0.0" y="32" width="129.5" height="28"/>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="NewGame"/>
+                                                <connections>
+                                                    <action selector="touchNewGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7YS-DG-YNf"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPr-hE-NbN">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbA-H9-VSM">
                                         <rect key="frame" x="133.5" y="0.0" width="130" height="60"/>
-                                        <state key="normal" title="Button"/>
-                                    </button>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0a8-Xl-DZI">
                                         <rect key="frame" x="267.5" y="0.0" width="129.5" height="60"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="3 more cards">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="touchThreeMoreCards:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ePt-Sh-L8c"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -61,6 +72,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="helpButton" destination="ZkY-Ol-7IQ" id="7WP-Hb-BIl"/>
+                        <outlet property="newGameButton" destination="vDP-lv-sYj" id="zsT-hE-CXp"/>
+                        <outlet property="scoreLabel" destination="TbA-H9-VSM" id="1Nz-pE-9iE"/>
+                        <outlet property="threeMoreCardsButton" destination="0a8-Xl-DZI" id="aPs-1R-Ff6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
