@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MenuViewController.swift
 //  Set
 //
 //  Created by Maxim Stomphorst on 30/04/2019.
@@ -8,11 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class SetViewController: UIViewController {
+    
+    //MARK: Outlests
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 
 
