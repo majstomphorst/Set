@@ -1,5 +1,5 @@
 //
-//  Card.swift
+//  SetCard.swift
 //  Set
 //
 //  Created by Maxim Stomphorst on 30/04/2019.
@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-struct Card: Equatable, CustomStringConvertible {
+struct SetCard: Equatable, CustomStringConvertible {
     
     let number: Number;
     let symbol: Symbol;
     let shading: Shading;
     let color: Color;
     
-    static func ==(lhs: Card, rhs: Card) -> Bool {
+    static func ==(lhs: SetCard, rhs: SetCard) -> Bool {
         return (lhs.number == rhs.number &&
             lhs.symbol == rhs.symbol &&
             lhs.shading == rhs.shading &&
