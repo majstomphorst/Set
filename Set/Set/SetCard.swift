@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct SetCard: Equatable, CustomStringConvertible {
+struct SetCard: Equatable, Hashable, CustomStringConvertible {
     
     let number: Number;
     let symbol: Symbol;
