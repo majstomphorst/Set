@@ -21,6 +21,8 @@
 		28A4C08122787E1700951BE5 /* SetCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4C08022787E1700951BE5 /* SetCardDeck.swift */; };
 		28A4C083227881C000951BE5 /* ExtensionInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4C082227881C000951BE5 /* ExtensionInt.swift */; };
 		28A4C0852278830300951BE5 /* SetCardDeckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4C0842278830300951BE5 /* SetCardDeckTests.swift */; };
+		28B03056227980B70032B049 /* SetGameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B03055227980B70032B049 /* SetGameTest.swift */; };
+		28B03058227983CC0032B049 /* UtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B03057227983CC0032B049 /* UtilTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		28A4C08022787E1700951BE5 /* SetCardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardDeck.swift; sourceTree = "<group>"; };
 		28A4C082227881C000951BE5 /* ExtensionInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionInt.swift; sourceTree = "<group>"; };
 		28A4C0842278830300951BE5 /* SetCardDeckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardDeckTests.swift; sourceTree = "<group>"; };
+		28B03055227980B70032B049 /* SetGameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameTest.swift; sourceTree = "<group>"; };
+		28B03057227983CC0032B049 /* UtilTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,8 @@
 				284925782278461500C39263 /* SetCardTests.swift */,
 				2849257A2278461500C39263 /* Info.plist */,
 				28A4C0842278830300951BE5 /* SetCardDeckTests.swift */,
+				28B03055227980B70032B049 /* SetGameTest.swift */,
+				28B03057227983CC0032B049 /* UtilTest.swift */,
 			);
 			path = SetTests;
 			sourceTree = "<group>";
@@ -255,6 +261,8 @@
 			files = (
 				284925792278461500C39263 /* SetCardTests.swift in Sources */,
 				28A4C0852278830300951BE5 /* SetCardDeckTests.swift in Sources */,
+				28B03056227980B70032B049 /* SetGameTest.swift in Sources */,
+				28B03058227983CC0032B049 /* UtilTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
