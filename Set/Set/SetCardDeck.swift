@@ -12,7 +12,7 @@ struct SetCardDeck : CustomStringConvertible {
     
     private(set) var cards = [SetCard]();
     
-    // a draw function
+    /// a draw a SetCard function
     mutating func draw(amount: validDraws = .three) -> [SetCard]? {
         // check if here are enough cards
         if cards.count < amount.rawValue { return nil }
@@ -35,8 +35,6 @@ struct SetCardDeck : CustomStringConvertible {
     
     /// Creates a deck with all the possible cards
     /// 3^4 = 81
-    ///
-    /// - Parameters: nill
     init() {
         let rangeOfThree = 1...3
         
@@ -52,6 +50,8 @@ struct SetCardDeck : CustomStringConvertible {
         }
     }
     
+    /// Create a humanly readible string representation
+    /// - Returns: string("card\n card\n")
     var description: String {
         var returnString = ""
         for card in cards {
