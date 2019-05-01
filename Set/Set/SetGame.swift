@@ -48,6 +48,23 @@ struct SetGame {
         };
     }
     
-    
-    
+    public mutating func findSetOnTable() -> [SetCard]? {
+        
+        var solution = [SetCard]();
+        for i in 0..<deckOnTable.count - 2 {
+            for j in (i+1)..<deckOnTable.count - 1 {
+                for k in (j+1)..<deckOnTable.count {
+                    let card1 = deckOnTable[i]
+                    let card2 = deckOnTable[j]
+                    let card3 = deckOnTable[k]
+                    if (SetGame.isSet(cards: card1,card2,card3)) {
+                        solution.append(contentsOf: [card1,card2,card3])
+                        return solution
+                    }
+                }
+            }
+        }
+        return solution;
+    }
+
 }

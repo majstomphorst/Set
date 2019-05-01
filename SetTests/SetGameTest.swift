@@ -47,5 +47,11 @@ class SetGameTest: XCTestCase {
         XCTAssertFalse(test3,"");
     }
     
+    func testFindSet() {
+        var setGame = SetGame();
+        
+        _ = setGame.findSetOnTable();
+    }
+    
     
 }
