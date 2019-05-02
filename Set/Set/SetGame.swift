@@ -48,8 +48,10 @@ struct SetGame {
         };
     }
     
+    /// find a set of card in the deck that is on table
+    ///
+    /// - Returns: a set of three card a solution
     public mutating func findSetOnTable() -> [SetCard]? {
-        
         var solution = [SetCard]();
         for i in 0..<deckOnTable.count - 2 {
             for j in (i+1)..<deckOnTable.count - 1 {
@@ -66,5 +68,4 @@ struct SetGame {
         }
         return solution;
     }
-
 }
