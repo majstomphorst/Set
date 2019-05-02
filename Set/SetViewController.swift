@@ -1,5 +1,5 @@
 //
-//  MenuViewController.swift
+//  SetViewController.swift
 //  Set
 //
 //  Created by Maxim Stomphorst on 30/04/2019.
@@ -10,7 +10,7 @@ import UIKit
 
 class SetViewController: UIViewController {
     
-    
+    var setGame = SetGame();
     
     //MARK: Outlests
     @IBOutlet weak var helpButton: UIButton!
