@@ -21,34 +21,67 @@ import UIKit
     private lazy var grid = Grid.init(layout: .dimensions(rowCount: 1, columnCount: 3), frame: bounds);
     
     override func draw(_ rect: CGRect) {
-        
-        // draw background
-        let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius);
-        roundedRect.addClip();
-        UIColor.white.setFill();
-        roundedRect.fill();
-        
+        drawBackground()
+
         /// drawing the shape
         // get current draw rect
         let rect = bounds.insetBy(dx: cornerOffset, dy: cornerOffset);
         // create 3 rectengels to draw the shape in
-        grid = Grid.init(layout: .aspectRatio(2.2), frame: rect);
-        grid.cellCount = 3;
+        grid = Grid.init(layout: .dimensions(rowCount: 3, columnCount: 1), frame: rect);
+        // grid.cellCount = card.number.rawValue
         
-        for i in 0..<grid.cellCount {
-            let rect2 = grid[i]!
-            let midXPoint = rect2.midX - (rect2.width/5)
-            let square = CGRect(x: midXPoint, y: rect2.minY,
-                                width: rect2.height, height: rect2.height)
+        for i in 0..<card.number.rawValue {
+            let square = centerObjectAndMakeSquare(rect: grid[i]!)
+            let shape = getShape(in: square.insetBy(dx: cornerOffset,
+                                                    dy: cornerOffset));
+            setStrokeAndFillColor();
             
-            let shape = getShape(in: square);
-            setFillColor();
             shape.lineWidth = 1;
-            shape.fill();
-            shape.stroke();
+            switch card.shading {
+            case .open:
+                shape.stroke();
+            case .solid:
+                shape.fill();
+            case .striped:
+                drawStripes(in: shape, within: grid[i]!);
+            }
+            
+            
+            
         }
     }
     
+    private func drawStripes(in shapPath: UIBezierPath, within bounds: CGRect ) {
+        
+        let numberOfStripes = Int(bounds.width / 2);
+        
+        UIGraphicsGetCurrentContext()?.saveGState();
+        shapPath.addClip();
+        
+        for line in 0..<numberOfStripes {
+            let xCoord = CGFloat(line);
+            
+            shapPath.move(to: CGPoint(x: xCoord * 3, y: 0))
+            shapPath.addLine(to: CGPoint(x: xCoord * 3, y: bounds.maxY))
+        }
+        
+        shapPath.stroke();
+        UIGraphicsGetCurrentContext()?.restoreGState()
+    }
+    
+    
+    private func centerObjectAndMakeSquare(rect: CGRect) -> CGRect {
+        let midXPoint = rect.midX - (rect.width/4)
+        return CGRect(x: midXPoint, y: rect.minY,
+                            width: rect.height, height: rect.height)
+    }
+    
+    private func drawBackground() {
+        let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius);
+        roundedRect.addClip();
+        UIColor.white.setFill();
+        roundedRect.fill();
+    }
     
     
     /// returns a simbol within the given bounds
@@ -66,14 +99,17 @@ import UIKit
         }
     }
     
-    private func setFillColor() {
+    private func setStrokeAndFillColor() {
         switch card.color {
         case .green:
             #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1).setFill();
+            #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1).setStroke();
         case .purple:
             #colorLiteral(red: 0.3236978054, green: 0.1063579395, blue: 0.574860394, alpha: 1).setFill();
+            #colorLiteral(red: 0.3236978054, green: 0.1063579395, blue: 0.574860394, alpha: 1).setStroke();
         case .red:
             #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1).setFill();
+            #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1).setStroke();
         }
     }
     
