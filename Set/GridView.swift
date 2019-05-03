@@ -27,7 +27,7 @@ class GridView: UIView {
                                                dy: cornerRadius));
         grid.cellCount = cards.count;
         for i in 0..<grid.cellCount {
-            if let gridItem = grid[i]{
+            if let gridItem = grid[i] {
                 let cardView = SetCardView(frame: gridItem.insetBy(dx: 4, dy: 4));
                 cardView.card = cards[i];
                 
@@ -38,15 +38,10 @@ class GridView: UIView {
         }
     }
     
-    private func setupCardView(card: SetCard,location: CGRect) {
-        
-    }
-    
     override func draw(_ rect: CGRect) {
         let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius);
         roundedRect.addClip();
         UIColor.green.setFill();
-        // roundedRect.fill();
         roundedRect.stroke()
     }
 }

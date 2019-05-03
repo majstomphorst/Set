@@ -17,11 +17,12 @@ import UIKit
     }
 
     var card: SetCard = SetCard(with: 1, 1, 1, 1);
-    var state = State.Selected;
+    var state = State.NotSelected;
+    
     private lazy var grid = Grid.init(layout: .dimensions(rowCount: 1, columnCount: 3), frame: bounds);
     
     override func draw(_ rect: CGRect) {
-        drawBackground()
+        updateViewForState();
 
         /// drawing the shape
         // get current draw rect
@@ -45,9 +46,19 @@ import UIKit
             case .striped:
                 drawStripes(in: shape, within: grid[i]!);
             }
-            
-            
-            
+        }
+        
+        
+    }
+    
+    private func updateViewForState() {
+        switch state {
+        case .NotSelected:
+            drawBackground(with: .white);
+        case .Selected:
+            drawBackground(with: .purple);
+        case .Hint:
+            drawBackground(with: .purple);
         }
     }
     
@@ -76,10 +87,10 @@ import UIKit
                             width: rect.height, height: rect.height)
     }
     
-    private func drawBackground() {
+    private func drawBackground(with color: UIColor) {
         let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius);
         roundedRect.addClip();
-        UIColor.white.setFill();
+        color.setFill();
         roundedRect.fill();
     }
     
