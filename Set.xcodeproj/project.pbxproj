@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28263475227C3D3900F39974 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28263474227C3D3900F39974 /* GridView.swift */; };
+		28263477227C5CCD00F39974 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28263476227C5CCD00F39974 /* ExtensionUIView.swift */; };
 		284925642278461300C39263 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284925632278461300C39263 /* AppDelegate.swift */; };
 		284925662278461300C39263 /* SetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284925652278461300C39263 /* SetViewController.swift */; };
 		284925692278461300C39263 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284925672278461300C39263 /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		28263474227C3D3900F39974 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		28263476227C5CCD00F39974 /* ExtensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
 		284925602278461300C39263 /* Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Set.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		284925632278461300C39263 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		284925652278461300C39263 /* SetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewController.swift; sourceTree = "<group>"; };
@@ -97,10 +101,11 @@
 		284925622278461300C39263 /* Set */ = {
 			isa = PBXGroup;
 			children = (
-				28A4C07F227879B700951BE5 /* Supporing */,
-				28A4C07E227879A200951BE5 /* Set */,
-				284925652278461300C39263 /* SetViewController.swift */,
+				28263474227C3D3900F39974 /* GridView.swift */,
 				28A4C0772278775900951BE5 /* SetCardView.swift */,
+				28A4C07F227879B700951BE5 /* Supporing */,
+				28A4C07E227879A200951BE5 /* SetEngine */,
+				284925652278461300C39263 /* SetViewController.swift */,
 				284925672278461300C39263 /* Main.storyboard */,
 				2849256A2278461500C39263 /* Assets.xcassets */,
 				2849256C2278461500C39263 /* LaunchScreen.storyboard */,
@@ -121,14 +126,14 @@
 			path = SetTests;
 			sourceTree = "<group>";
 		};
-		28A4C07E227879A200951BE5 /* Set */ = {
+		28A4C07E227879A200951BE5 /* SetEngine */ = {
 			isa = PBXGroup;
 			children = (
 				28A4C07122786E6C00951BE5 /* SetCard.swift */,
 				28A4C079227877E900951BE5 /* SetGame.swift */,
 				28A4C08022787E1700951BE5 /* SetCardDeck.swift */,
 			);
-			path = Set;
+			path = SetEngine;
 			sourceTree = "<group>";
 		};
 		28A4C07F227879B700951BE5 /* Supporing */ = {
@@ -138,6 +143,7 @@
 				28A4C07B227878B900951BE5 /* Util.swift */,
 				28A4C075227875F300951BE5 /* Grid.swift */,
 				28A4C082227881C000951BE5 /* ExtensionInt.swift */,
+				28263476227C5CCD00F39974 /* ExtensionUIView.swift */,
 			);
 			path = Supporing;
 			sourceTree = "<group>";
@@ -245,12 +251,14 @@
 			files = (
 				28A4C0782278775900951BE5 /* SetCardView.swift in Sources */,
 				28A4C08122787E1700951BE5 /* SetCardDeck.swift in Sources */,
+				28263477227C5CCD00F39974 /* ExtensionUIView.swift in Sources */,
 				284925662278461300C39263 /* SetViewController.swift in Sources */,
 				28A4C07222786E6C00951BE5 /* SetCard.swift in Sources */,
 				284925642278461300C39263 /* AppDelegate.swift in Sources */,
 				28A4C07C227878B900951BE5 /* Util.swift in Sources */,
 				28A4C07A227877E900951BE5 /* SetGame.swift in Sources */,
 				28A4C076227875F300951BE5 /* Grid.swift in Sources */,
+				28263475227C3D3900F39974 /* GridView.swift in Sources */,
 				28A4C083227881C000951BE5 /* ExtensionInt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

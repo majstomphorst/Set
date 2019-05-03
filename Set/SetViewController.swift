@@ -12,14 +12,18 @@ class SetViewController: UIViewController {
     
     var setGame = SetGame();
     
+    
     //MARK: Outlests
     @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var newGameButton: UIButton!
     @IBOutlet weak var threeMoreCardsButton: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var gridView: GridView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gridView.cards = setGame.deckOnTable;
     }
     
     //MARK: Actions

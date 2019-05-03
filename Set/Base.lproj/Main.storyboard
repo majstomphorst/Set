@@ -17,6 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="tTE-4v-Wc3" customClass="GridView" customModule="Set" customModuleProvider="target">
+                                <rect key="frame" x="4" y="48" width="406" height="738"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="4aA-wg-YIC">
                                 <rect key="frame" x="9" y="794" width="397" height="60"/>
                                 <subviews>
@@ -64,15 +68,20 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4aA-wg-YIC" secondAttribute="trailing" constant="8" id="FQB-b4-IW0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tTE-4v-Wc3" secondAttribute="trailing" constant="4" id="N9F-kP-PPq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4aA-wg-YIC" secondAttribute="bottom" constant="8" id="V2W-ZT-Dl9"/>
                             <constraint firstItem="4aA-wg-YIC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="9" id="ajr-jJ-rgV"/>
+                            <constraint firstItem="tTE-4v-Wc3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="4" id="dw9-29-cOT"/>
+                            <constraint firstItem="4aA-wg-YIC" firstAttribute="top" secondItem="tTE-4v-Wc3" secondAttribute="bottom" constant="8" id="exp-8F-BfD"/>
+                            <constraint firstItem="tTE-4v-Wc3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="4" id="fqp-WQ-2io"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="gridView" destination="tTE-4v-Wc3" id="4vt-fC-W0F"/>
                         <outlet property="helpButton" destination="ZkY-Ol-7IQ" id="7WP-Hb-BIl"/>
                         <outlet property="newGameButton" destination="vDP-lv-sYj" id="zsT-hE-CXp"/>
                         <outlet property="scoreLabel" destination="TbA-H9-VSM" id="1Nz-pE-9iE"/>
@@ -81,6 +90,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="231.8840579710145" y="-35.491071428571423"/>
         </scene>
     </scenes>
 </document>
