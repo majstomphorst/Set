@@ -8,7 +8,27 @@
 
 import UIKit
 
-class SetViewController: UIViewController {
+class SetViewController: UIViewController, LayoutViews {
+    
+    func updateViewFromModel() {
+        gridView.subviews.forEach {$0.removeFromSuperview() }
+        
+        
+        var grid = Grid(layout: Grid.Layout.aspectRatio(0.7),
+                        frame: gridView.bounds.insetBy(dx: gridView.cornerRadius,
+                                                       dy: gridView.cornerRadius));
+        grid.cellCount = setGame.deckOnTable.count;
+        
+        for i in 0..<grid.cellCount {
+            if let gridItem = grid[i] {
+                let cardView = SetCardView(frame: gridItem.insetBy(dx: 4, dy: 4));
+                cardView.card = setGame.deckOnTable[i];
+                
+                cardView.backgroundColor = .clear;
+                gridView.addSubview(cardView);
+            }
+        }
+    }
     
     var setGame = SetGame();
     
@@ -17,15 +37,13 @@ class SetViewController: UIViewController {
     @IBOutlet weak var newGameButton: UIButton!
     @IBOutlet weak var threeMoreCardsButton: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var gridView: GridView!
-    
+    @IBOutlet weak var gridView: GridView! { didSet { gridView.delegate = self } }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         prettifyButtons(helpButton, color: .gray);
         prettifyButtons(newGameButton, color: .green);
         prettifyButtons(threeMoreCardsButton, color: .darkGray);
-        gridView.cards = setGame.deckOnTable;
     }
     
     //MARK: Actions

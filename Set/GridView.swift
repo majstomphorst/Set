@@ -8,34 +8,17 @@
 
 import UIKit
 
+protocol LayoutViews: class {
+    func updateViewFromModel()
+}
+
 class GridView: UIView {
     
-    private lazy var grid = Grid(layout: Grid.Layout.aspectRatio(0.7), frame: self.bounds.insetBy(dx: cornerRadius, dy: cornerRadius));
-    var cards = [SetCard]() {
-        didSet {
-            setNeedsLayout();
-            setNeedsLayout();
-        }
-    }
+    weak var delegate: LayoutViews?
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        subviews.forEach { $0.removeFromSuperview() }
-        
-        grid = Grid(layout: Grid.Layout.aspectRatio(0.7),
-                    frame: self.bounds.insetBy(dx: cornerRadius,
-                                               dy: cornerRadius));
-        grid.cellCount = cards.count;
-        for i in 0..<grid.cellCount {
-            if let gridItem = grid[i] {
-                let cardView = SetCardView(frame: gridItem.insetBy(dx: 4, dy: 4));
-                cardView.card = cards[i];
-                
-                cardView.backgroundColor = .clear;
-                addSubview(cardView);
-            }
-
-        }
+        delegate?.updateViewFromModel();
     }
     
     override func draw(_ rect: CGRect) {
