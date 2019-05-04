@@ -13,7 +13,6 @@ class SetViewController: UIViewController, LayoutViews {
     func updateViewFromModel() {
         gridView.subviews.forEach {$0.removeFromSuperview() }
         
-        
         var grid = Grid(layout: Grid.Layout.aspectRatio(0.7),
                         frame: gridView.bounds.insetBy(dx: gridView.cornerRadius,
                                                        dy: gridView.cornerRadius));
@@ -23,11 +22,20 @@ class SetViewController: UIViewController, LayoutViews {
             if let gridItem = grid[i] {
                 let cardView = SetCardView(frame: gridItem.insetBy(dx: 4, dy: 4));
                 cardView.card = setGame.deckOnTable[i];
+                cardView.state = .NotSelected;
+                
+                let tap = UITapGestureRecognizer(target: self, action: #selector(self.cardTap(recognizer:)))
+                cardView.isUserInteractionEnabled = true;
+                cardView.addGestureRecognizer(tap);
                 
                 cardView.backgroundColor = .clear;
                 gridView.addSubview(cardView);
             }
         }
+    }
+    
+    @objc func cardTap(recognizer: UITapGestureRecognizer) {
+        print("tap")
     }
     
     var setGame = SetGame();
