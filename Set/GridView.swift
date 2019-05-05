@@ -24,7 +24,7 @@ class GridView: UIView {
     override func draw(_ rect: CGRect) {
         let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius);
         roundedRect.addClip();
-        UIColor.green.setFill();
-        roundedRect.stroke()
+        UIColor.white.setStroke();
+        roundedRect.stroke();
     }
 }

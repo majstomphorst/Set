@@ -26,9 +26,17 @@ import UIKit
 
         /// drawing the shape
         // get current draw rect
-        let rect = bounds.insetBy(dx: cornerOffset, dy: cornerOffset);
+        let roundRect = bounds.insetBy(dx: cornerOffset, dy: cornerOffset);
+        
+        
+        let line = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius);
+        line.addClip();
+        UIColor.black.setStroke();
+        line.stroke();
+        
+        
         // create 3 rectengels to draw the shape in
-        grid = Grid.init(layout: .dimensions(rowCount: 3, columnCount: 1), frame: rect);
+        grid = Grid.init(layout: .dimensions(rowCount: 3, columnCount: 1), frame: roundRect);
         // grid.cellCount = card.number.rawValue
         
         for i in 0..<card.number.rawValue {
@@ -54,9 +62,20 @@ import UIKit
         case .NotSelected:
             drawBackground(with: .white);
         case .Selected:
-            drawBackground(with: .purple);
+            drawBackground(with: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1));
         case .Hint:
-            drawBackground(with: .purple);
+            
+            let flash = CABasicAnimation(keyPath: "opacity")
+            flash.duration = 0.5
+            flash.fromValue = 1
+            flash.toValue = 0.1
+            flash.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            flash.autoreverses = true
+            flash.repeatCount = 3
+            layer.add(flash, forKey: nil)
+            drawBackground(with: .white);
+            state = .NotSelected;
+            
         }
     }
     
@@ -82,7 +101,7 @@ import UIKit
     private func centerObjectAndMakeSquare(rect: CGRect) -> CGRect {
         let midXPoint = rect.midX - (rect.width/4)
         return CGRect(x: midXPoint, y: rect.minY,
-                            width: rect.height, height: rect.height)
+                      width: rect.height, height: rect.height)
     }
     
     private func drawBackground(with color: UIColor) {
