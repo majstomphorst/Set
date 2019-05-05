@@ -23,15 +23,13 @@ class GridView: UIView {
     
     override func draw(_ rect: CGRect) {
         let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius);
+        roundedRect.addClip();
         
         Util.theme.gridBackground.color.setFill()
         roundedRect.fill();
         
-        roundedRect.addClip();
         Util.theme.cardBackground.color.setStroke();
         roundedRect.stroke();
-        
-
         
     }
 }

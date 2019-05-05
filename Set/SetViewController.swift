@@ -10,7 +10,6 @@ import UIKit
 
 class SetViewController: UIViewController, LayoutViews {
     
-    
     var setGame = SetGame();
     
     // MARK: Outlests
@@ -71,15 +70,27 @@ class SetViewController: UIViewController, LayoutViews {
     }
     
     @objc func handleTapOnCard(_ recognizer: UITapGestureRecognizer) {
-        let location = recognizer.location(in: gridView);
-        if let tappedView = gridView.hitTest(location, with: nil) {
-            if let cardIndex = gridView.subviews.firstIndex(of: tappedView) {
-                let card = setGame.deckOnTable[cardIndex];
-                
-                setGame.chooseCard(card: card);
-                updateViewFromModel()
+        switch recognizer.state {
+        case .ended:
+            
+            if let chosenCardView = recognizer.view as? SetCardView {
+                setGame.chooseCard(card: chosenCardView.card)
+                updateViewFromModel();
             }
+            
+//            let location = recognizer.location(in: gridView);
+//            if let tappedView = gridView.hitTest(location, with: nil) {
+//                if let cardIndex = gridView.subviews.firstIndex(of: tappedView) {
+//                    let card = setGame.deckOnTable[cardIndex];
+//                    
+//                    setGame.chooseCard(card: card);
+//                    updateViewFromModel()
+//                }
+//            }
+        default:
+            break;
         }
+
     }
     
     //MARK: Actions
