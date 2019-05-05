@@ -27,6 +27,10 @@ class SetViewController: UIViewController, LayoutViews {
     }
     
     func updateViewFromModel() {
+        scoreLabel.text = "Deck: \(setGame.deckCount)+\(setGame.deckOnTable.count) Sets: \(setGame.matched.count / 3)";
+        
+        
+        
         gridView.subviews.forEach {$0.removeFromSuperview() }
         
         var grid = Grid(layout: Grid.Layout.aspectRatio(0.7),
@@ -54,14 +58,12 @@ class SetViewController: UIViewController, LayoutViews {
     }
     
     private func getCardState(for card: SetCard) -> SetCardView.State {
-        
         if (setGame.beingMatched.contains(card)) {
             return .Selected
         } else if (setGame.hint.contains(card)) {
             return .Hint;
         }
         return .NotSelected;
-        
     }
     
     @objc func handleTapOnCard(_ recognizer: UITapGestureRecognizer) {
