@@ -72,7 +72,7 @@ import UIKit
             flash.autoreverses = true
             flash.repeatCount = 3
             layer.add(flash, forKey: nil)
-            drawBackground(with: .white);
+            drawBackground(with: Util.theme.cardBackground.color);
             state = .NotSelected;
             
         }
