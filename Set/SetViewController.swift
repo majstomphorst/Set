@@ -84,7 +84,8 @@ class SetViewController: UIViewController, LayoutViews {
         }
     }
     @IBAction func touchNewGame(_ sender: UIButton) {
-        
+        setGame = SetGame();
+        updateViewFromModel();
     }
     @IBAction func touchThreeMoreCards(_ sender: UIButton) {
         setGame.dealThreeMoreCards();
