@@ -10,26 +10,30 @@ import UIKit
 
 class SetViewController: UIViewController, LayoutViews {
     
+    
     var setGame = SetGame();
     
-    //MARK: Outlests
+    // MARK: Outlests
+    @IBOutlet var mainView: UIView!
+    @IBOutlet weak var gridView: GridView! { didSet { gridView.delegate = self } }
     @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var newGameButton: UIButton!
     @IBOutlet weak var threeMoreCardsButton: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var gridView: GridView! { didSet { gridView.delegate = self } }
+   
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad();
+        mainView.backgroundColor = Util.theme.mainBackground.color;
+        
         prettifyButtons(helpButton, color: .gray);
         prettifyButtons(newGameButton, color: .green);
         prettifyButtons(threeMoreCardsButton, color: .darkGray);
     }
     
     func updateViewFromModel() {
+        scoreLabel.textColor = Util.theme.cardBackground.color;
         scoreLabel.text = "Deck: \(setGame.deckCount)+\(setGame.deckOnTable.count) Sets: \(setGame.matched.count / 3)";
-        
-        
         
         gridView.subviews.forEach {$0.removeFromSuperview() }
         

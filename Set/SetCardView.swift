@@ -34,7 +34,6 @@ import UIKit
         UIColor.black.setStroke();
         line.stroke();
         
-        
         // create 3 rectengels to draw the shape in
         grid = Grid.init(layout: .dimensions(rowCount: 3, columnCount: 1), frame: roundRect);
         // grid.cellCount = card.number.rawValue
@@ -60,9 +59,9 @@ import UIKit
     private func updateViewForState() {
         switch state {
         case .NotSelected:
-            drawBackground(with: .white);
+            drawBackground(with: Util.theme.cardBackground.color);
         case .Selected:
-            drawBackground(with: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1));
+            drawBackground(with: Util.theme.cardHilight.color);
         case .Hint:
             
             let flash = CABasicAnimation(keyPath: "opacity")
@@ -130,14 +129,14 @@ import UIKit
     private func setStrokeAndFillColor() {
         switch card.color {
         case .green:
-            #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1).setFill();
-            #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1).setStroke();
+            Util.theme.icon1.color.setFill()
+            Util.theme.icon1.color.setStroke()
         case .purple:
-            #colorLiteral(red: 0.3236978054, green: 0.1063579395, blue: 0.574860394, alpha: 1).setFill();
-            #colorLiteral(red: 0.3236978054, green: 0.1063579395, blue: 0.574860394, alpha: 1).setStroke();
+            Util.theme.icon2.color.setFill()
+            Util.theme.icon2.color.setStroke()
         case .red:
-            #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1).setFill();
-            #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1).setStroke();
+            Util.theme.icon3.color.setFill()
+            Util.theme.icon3.color.setStroke()
         }
     }
 
