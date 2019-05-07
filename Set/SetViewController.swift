@@ -37,8 +37,8 @@ class SetViewController: UIViewController, LayoutViews {
         gridView.subviews.forEach {$0.removeFromSuperview() }
         
         var grid = Grid(layout: Grid.Layout.aspectRatio(0.7),
-                        frame: gridView.bounds.insetBy(dx: gridView.cornerRadius,
-                                                       dy: gridView.cornerRadius));
+                        frame: gridView.bounds.insetBy(dx: gridView.cornerOffset,
+                                                       dy: gridView.cornerOffset));
         grid.cellCount = setGame.deckOnTable.count;
         
         for i in 0..<grid.cellCount {
