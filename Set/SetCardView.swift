@@ -108,7 +108,7 @@ import UIKit
     }
     
     
-    /// returns a simbol within the given bounds
+    /// returns a symbol within the given bounds
     ///
     /// - Parameters: the bounds of the object
     /// - Returns: a UIBeziePath of the chape
