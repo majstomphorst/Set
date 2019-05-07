@@ -25,12 +25,13 @@ struct SetGame {
     
     public mutating func chooseCard(card: SetCard) {
         
-        if !beingMatched.contains(card) {
+        let index = beingMatched.firstIndex(of: card);
+        if index == nil {
             beingMatched.append(card);
         } else {
-            beingMatched.removeLast();
+            beingMatched.remove(at: index!);
         }
-        
+    
         if beingMatched.count >= 3 {
             
             // is there a set?
@@ -38,8 +39,8 @@ struct SetGame {
                 matched.append(contentsOf: beingMatched);
                 let copyBeingMatched = beingMatched;
                 deckOnTable.removeAll { copyBeingMatched.contains($0) }
-                
             }
+            
             beingMatched.removeAll();
             
             if (deckOnTable.count <= 9) {
@@ -49,8 +50,6 @@ struct SetGame {
                 }
             }
         }
-        
-        
         
     }
     

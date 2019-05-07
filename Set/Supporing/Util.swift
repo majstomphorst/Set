@@ -29,7 +29,7 @@ struct Util {
             case .cardBackground:
                 return #colorLiteral(red: 0.8823529412, green: 0.8784313725, blue: 0.8392156863, alpha: 1);
             case .cardHilight:
-                return #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1);
+                return #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1);
             case .icon1:
                 return #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1);
             case .icon2:

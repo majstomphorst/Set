@@ -72,8 +72,9 @@ class SetViewController: UIViewController, LayoutViews {
     @objc func handleTapOnCard(_ recognizer: UITapGestureRecognizer) {
         switch recognizer.state {
         case .ended:
-            
             if let chosenCardView = recognizer.view as? SetCardView {
+            
+                setGame.hint.removeAll()
                 setGame.chooseCard(card: chosenCardView.card)
                 updateViewFromModel();
             }

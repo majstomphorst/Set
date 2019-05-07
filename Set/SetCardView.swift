@@ -28,7 +28,6 @@ import UIKit
         // get current draw rect
         let roundRect = bounds.insetBy(dx: cornerOffset, dy: cornerOffset);
         
-        
         let line = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius);
         line.addClip();
         UIColor.black.setStroke();
@@ -63,7 +62,6 @@ import UIKit
         case .Selected:
             drawBackground(with: Util.theme.cardHilight.color);
         case .Hint:
-            
             let flash = CABasicAnimation(keyPath: "opacity")
             flash.duration = 0.5
             flash.fromValue = 1
@@ -73,7 +71,6 @@ import UIKit
             flash.repeatCount = 3
             layer.add(flash, forKey: nil)
             drawBackground(with: Util.theme.cardBackground.color);
-            state = .NotSelected;
             
         }
     }
