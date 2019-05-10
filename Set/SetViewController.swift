@@ -36,8 +36,9 @@ class SetViewController: UIViewController, LayoutViews {
         prettifyButtons(threeMoreCardsButton, color: .darkGray);
     }
     
+    /// calculates the position and the dimensions of the cardViews(child) with in the grid view
+    /// next is sets the cardViews in the correct position in the gridView(parent)
     func updateViewFromModel() {
-        // gridView.subviews.forEach {$0.removeFromSuperview() }
         var grid = Grid(layout: Grid.Layout.aspectRatio(0.7),
                         frame: gridView.bounds.insetBy(dx: gridView.cornerOffset,
                                                        dy: gridView.cornerOffset));
@@ -46,9 +47,6 @@ class SetViewController: UIViewController, LayoutViews {
         for index in cardButtons.indices {
             cardButtons[index].frame = grid[index]?.insetBy(dx: 4, dy: 4) ?? CGRect.zero;
         }
-        
-        
-        
     }
     
     private func addSetCardView(for setCard: SetCard) {
@@ -95,8 +93,9 @@ class SetViewController: UIViewController, LayoutViews {
         }
     }
     @IBAction func touchNewGame(_ sender: UIButton) {
+        gridView.subviews.forEach {$0.removeFromSuperview() }
+        cardButtons = [];
         setGame = SetGame();
-        updateViewFromModel();
     }
     @IBAction func touchThreeMoreCards(_ sender: UIButton) {
         setGame.dealThreeMoreCards();
