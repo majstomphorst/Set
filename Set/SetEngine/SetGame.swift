@@ -17,10 +17,12 @@ struct SetGame {
     public var matched = [SetCard]();
     public var hint = [SetCard]();
     
-    public mutating func dealThreeMoreCards() {
+    public mutating func dealThreeMoreCards() -> [SetCard]? {
         if let cards = deck.draw() {
             deckOnTable.append(contentsOf: cards);
+            return cards
         }
+        return nil;
     }
     
     public mutating func chooseCard(card: SetCard) {

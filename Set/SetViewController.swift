@@ -87,10 +87,10 @@ class SetViewController: UIViewController, LayoutViews {
     
     //MARK: Actions
     @IBAction func touchHelp(_ sender: UIButton) {
-        if let cards = setGame.findSetOnTable() {
-            setGame.hint.append(contentsOf: cards)
-            updateViewFromModel();
-        }
+//        if let cards = setGame.findSetOnTable() {
+//            setGame.hint.append(contentsOf: cards)
+//            updateViewFromModel();
+//        }
     }
     @IBAction func touchNewGame(_ sender: UIButton) {
         gridView.subviews.forEach {$0.removeFromSuperview() }
@@ -98,8 +98,9 @@ class SetViewController: UIViewController, LayoutViews {
         setGame = SetGame();
     }
     @IBAction func touchThreeMoreCards(_ sender: UIButton) {
-        setGame.dealThreeMoreCards();
-        updateViewFromModel();
+        if let cards = setGame.dealThreeMoreCards() {
+            cards.forEach { addSetCardView(for: $0)}
+        }
     }
     
     private func prettifyButtons(_ button: UIButton, color: UIColor) {
