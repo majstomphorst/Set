@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 struct Util {
+    static var borderWidth: CGFloat = 1.0;
+    static var cornerRadius: CGFloat = 8.0;
     
     enum theme: Int {
         case mainBackground = 1;

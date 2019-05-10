@@ -10,7 +10,13 @@ import UIKit
 
 class SetViewController: UIViewController, LayoutViews {
     
-    var setGame = SetGame();
+    var setGame: SetGame! {
+        didSet {
+            let deckOnTable = setGame.deckOnTable;
+            deckOnTable.indices.forEach{ addSetCardView(for: deckOnTable[$0]) }
+        }
+    }
+    var cardButtons: [SetCardView] = []
     
     // MARK: Outlests
     @IBOutlet var mainView: UIView!
@@ -19,78 +25,65 @@ class SetViewController: UIViewController, LayoutViews {
     @IBOutlet weak var newGameButton: UIButton!
     @IBOutlet weak var threeMoreCardsButton: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        setGame = SetGame();
         mainView.backgroundColor = Util.theme.mainBackground.color;
-        
         prettifyButtons(helpButton, color: .gray);
         prettifyButtons(newGameButton, color: .green);
         prettifyButtons(threeMoreCardsButton, color: .darkGray);
     }
     
     func updateViewFromModel() {
-        scoreLabel.textColor = Util.theme.cardBackground.color;
-        scoreLabel.text = "Deck: \(setGame.deckCount)+\(setGame.deckOnTable.count) Sets: \(setGame.matched.count / 3)";
-        
-        gridView.subviews.forEach {$0.removeFromSuperview() }
-        
+        // gridView.subviews.forEach {$0.removeFromSuperview() }
         var grid = Grid(layout: Grid.Layout.aspectRatio(0.7),
                         frame: gridView.bounds.insetBy(dx: gridView.cornerOffset,
                                                        dy: gridView.cornerOffset));
         grid.cellCount = setGame.deckOnTable.count;
         
-        for i in 0..<grid.cellCount {
-            
-            if let gridRect = grid[i] {
-                
-                let cardView = SetCardView(frame: gridRect.insetBy(dx: 4, dy: 4));
-                let setCard = setGame.deckOnTable[i];
-                cardView.card = setCard
-                cardView.state = getCardState(for: setCard);
-                
-                let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTapOnCard(_:)))
-                cardView.isUserInteractionEnabled = true;
-                cardView.addGestureRecognizer(tap);
-                
-                cardView.backgroundColor = .clear;
-                gridView.addSubview(cardView);
-            }
+        for index in cardButtons.indices {
+            cardButtons[index].frame = grid[index]?.insetBy(dx: 4, dy: 4) ?? CGRect.zero;
         }
+        
+        
+        
     }
+    
+    private func addSetCardView(for setCard: SetCard) {
+        let cardView = SetCardView();
+        
+        cardView.card = setCard;
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTapOnCard(_:)))
+        cardView.isUserInteractionEnabled = true;
+        cardView.addGestureRecognizer(tap);
+        
+        cardView.contentMode = .redraw;
+        cardButtons.append(cardView);
+        gridView.addSubview(cardView);
+    }
+    
     
     private func getCardState(for card: SetCard) -> SetCardView.State {
         if (setGame.beingMatched.contains(card)) {
-            return .Selected
+            return .selected
         } else if (setGame.hint.contains(card)) {
-            return .Hint;
+            return .hint;
         }
-        return .NotSelected;
+        return .notSelected;
     }
     
     @objc func handleTapOnCard(_ recognizer: UITapGestureRecognizer) {
-        switch recognizer.state {
-        case .ended:
-            if let chosenCardView = recognizer.view as? SetCardView {
-            
-                setGame.hint.removeAll()
-                setGame.chooseCard(card: chosenCardView.card)
-                updateViewFromModel();
-            }
-            
-//            let location = recognizer.location(in: gridView);
-//            if let tappedView = gridView.hitTest(location, with: nil) {
-//                if let cardIndex = gridView.subviews.firstIndex(of: tappedView) {
-//                    let card = setGame.deckOnTable[cardIndex];
-//                    
-//                    setGame.chooseCard(card: card);
-//                    updateViewFromModel()
-//                }
+//        switch recognizer.state {
+//        case .ended:
+//            if let chosenCardView = recognizer.view as? SetCardView {
+//
 //            }
-        default:
-            break;
-        }
+//        default:
+//            break;
+//        }
 
     }
     
