@@ -17,6 +17,7 @@ class SetViewController: UIViewController, LayoutViews {
         }
     }
     var cardButtons: [SetCardView] = []
+    var beingMatched = [SetCard]();
     
     // MARK: Outlests
     @IBOutlet var mainView: UIView!
@@ -63,7 +64,7 @@ class SetViewController: UIViewController, LayoutViews {
     }
     
     private func getCardState(for card: SetCard) -> SetCardView.State {
-        if (setGame.beingMatched.contains(card)) {
+        if (beingMatched.contains(card)) {
             return .selected
         } else if (setGame.hint.contains(card)) {
             return .hint;
@@ -76,7 +77,8 @@ class SetViewController: UIViewController, LayoutViews {
         case .ended:
             if let chosenCardView = recognizer.view as? SetCardView {
                 
-                setGame.chooseCard(card: chosenCardView.card!);
+                // setGame.chooseCard(card: chosenCardView.card!);
+                choosenCard(card: chosenCardView.card!)
                 chosenCardView.state = getCardState(for: chosenCardView.card!);
                 
 
@@ -100,19 +102,30 @@ class SetViewController: UIViewController, LayoutViews {
             
             // is there a set?
             if (SetGame.isSet(cards: beingMatched)) {
-                matched.append(contentsOf: beingMatched);
-                let copyBeingMatched = beingMatched;
-                deckOnTable.removeAll { copyBeingMatched.contains($0) }
+                // model
+                setGame.matched.append(contentsOf: beingMatched)
+                setGame.deckOnTable.removeAll { beingMatched.contains($0) }
+                
+                // view
+                cardButtons.removeAll { (cardButton) -> Bool in
+                    if (beingMatched.contains(cardButton.card!)){
+                        cardButton.removeFromSuperview();
+                        return true;
+                    }
+                    return false;
+                }
+                // add new cards to view
+                
             }
             
             beingMatched.removeAll();
             
-            if (deckOnTable.count <= 9) {
-                
-                if let newCards = deck.draw() {
-                    deckOnTable.append(contentsOf: newCards);
-                }
-            }
+//            if (deckOnTable.count <= 9) {
+//
+//                if let newCards = deck.draw() {
+//                    deckOnTable.append(contentsOf: newCards);
+//                }
+//            }
         }
     }
     
