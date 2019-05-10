@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SetGame {
+class SetGame {
     var deckCount: Int { get { return deck.count; } }
     
     private var deck = SetCardDeck();
@@ -17,7 +17,7 @@ struct SetGame {
     public var matched = [SetCard]();
     public var hint = [SetCard]();
     
-    public mutating func dealThreeMoreCards() -> [SetCard]? {
+    public func dealThreeMoreCards() -> [SetCard]? {
         if let cards = deck.draw() {
             deckOnTable.append(contentsOf: cards);
             return cards
@@ -25,7 +25,7 @@ struct SetGame {
         return nil;
     }
     
-    public mutating func chooseCard(card: SetCard) {
+    public func chooseCard(card: SetCard) {
         
         let index = beingMatched.firstIndex(of: card);
         if index == nil {
@@ -91,7 +91,7 @@ struct SetGame {
     /// find a set of card in the deck that is on table
     ///
     /// - Returns: a set of three card a solution
-    public mutating func findSetOnTable() -> [SetCard]? {
+    public func findSetOnTable() -> [SetCard]? {
         var solution = [SetCard]();
         for i in 0..<deckOnTable.count - 2 {
             for j in (i+1)..<deckOnTable.count - 1 {

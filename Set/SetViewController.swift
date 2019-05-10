@@ -26,7 +26,6 @@ class SetViewController: UIViewController, LayoutViews {
     @IBOutlet weak var threeMoreCardsButton: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad();
         setGame = SetGame();
@@ -51,18 +50,17 @@ class SetViewController: UIViewController, LayoutViews {
     
     private func addSetCardView(for setCard: SetCard) {
         let cardView = SetCardView();
-        
+        cardView.contentMode = .redraw;
+    
         cardView.card = setCard;
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTapOnCard(_:)))
         cardView.isUserInteractionEnabled = true;
         cardView.addGestureRecognizer(tap);
         
-        cardView.contentMode = .redraw;
         cardButtons.append(cardView);
         gridView.addSubview(cardView);
     }
-    
     
     private func getCardState(for card: SetCard) -> SetCardView.State {
         if (setGame.beingMatched.contains(card)) {
@@ -97,9 +95,12 @@ class SetViewController: UIViewController, LayoutViews {
         cardButtons = [];
         setGame = SetGame();
     }
+    
     @IBAction func touchThreeMoreCards(_ sender: UIButton) {
         if let cards = setGame.dealThreeMoreCards() {
-            cards.forEach { addSetCardView(for: $0)}
+            for index in cards.indices {
+                addSetCardView(for: cards[index])
+            }
         }
     }
     
@@ -110,4 +111,3 @@ class SetViewController: UIViewController, LayoutViews {
         button.layer.borderColor = UIColor.black.cgColor;
     }
 }
-
