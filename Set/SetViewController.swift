@@ -72,23 +72,67 @@ class SetViewController: UIViewController, LayoutViews {
     }
     
     @objc func handleTapOnCard(_ recognizer: UITapGestureRecognizer) {
-//        switch recognizer.state {
-//        case .ended:
-//            if let chosenCardView = recognizer.view as? SetCardView {
-//
-//            }
-//        default:
-//            break;
-//        }
+        switch recognizer.state {
+        case .ended:
+            if let chosenCardView = recognizer.view as? SetCardView {
+                
+                setGame.chooseCard(card: chosenCardView.card!);
+                chosenCardView.state = getCardState(for: chosenCardView.card!);
+                
+
+            }
+        default:
+            break;
+        }
 
     }
     
+    func choosenCard(card: SetCard) {
+        
+        let index = beingMatched.firstIndex(of: card);
+        if index == nil {
+            beingMatched.append(card);
+        } else {
+            beingMatched.remove(at: index!);
+        }
+        
+        if beingMatched.count >= 3 {
+            
+            // is there a set?
+            if (SetGame.isSet(cards: beingMatched)) {
+                matched.append(contentsOf: beingMatched);
+                let copyBeingMatched = beingMatched;
+                deckOnTable.removeAll { copyBeingMatched.contains($0) }
+            }
+            
+            beingMatched.removeAll();
+            
+            if (deckOnTable.count <= 9) {
+                
+                if let newCards = deck.draw() {
+                    deckOnTable.append(contentsOf: newCards);
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    
     //MARK: Actions
     @IBAction func touchHelp(_ sender: UIButton) {
-//        if let cards = setGame.findSetOnTable() {
-//            setGame.hint.append(contentsOf: cards)
-//            updateViewFromModel();
-//        }
+        
+        // TODO - BAD implementation
+        if let cards = setGame.findSetOnTable() {
+            cards.forEach { (card) in
+                cardButtons.forEach({ (cardButton) in
+                    if card == cardButton.card! {
+                        cardButton.state = .hint
+                    }
+                })
+            }
+        }
     }
     @IBAction func touchNewGame(_ sender: UIButton) {
         gridView.subviews.forEach {$0.removeFromSuperview() }
@@ -98,9 +142,7 @@ class SetViewController: UIViewController, LayoutViews {
     
     @IBAction func touchThreeMoreCards(_ sender: UIButton) {
         if let cards = setGame.dealThreeMoreCards() {
-            for index in cards.indices {
-                addSetCardView(for: cards[index])
-            }
+            cards.forEach { addSetCardView(for: $0) }
         }
     }
     
