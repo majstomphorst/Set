@@ -54,6 +54,7 @@ class SetViewController: UIViewController, LayoutViews {
         cardView.contentMode = .redraw;
     
         cardView.card = setCard;
+        cardView.state = .notSelected;
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTapOnCard(_:)))
         cardView.isUserInteractionEnabled = true;
@@ -76,12 +77,8 @@ class SetViewController: UIViewController, LayoutViews {
         switch recognizer.state {
         case .ended:
             if let chosenCardView = recognizer.view as? SetCardView {
-                
-                // setGame.chooseCard(card: chosenCardView.card!);
                 choosenCard(card: chosenCardView.card!)
                 chosenCardView.state = getCardState(for: chosenCardView.card!);
-                
-
             }
         default:
             break;
@@ -115,23 +112,18 @@ class SetViewController: UIViewController, LayoutViews {
                     return false;
                 }
                 // add new cards to view
-                
+                if (cardButtons.count <= 9) {
+                    if let newCards = setGame.dealThreeMoreCards() {
+                        newCards.forEach { addSetCardView(for: $0) }
+                    }
+                }
             }
             
-            beingMatched.removeAll();
+            cardButtons.forEach {$0.state = .notSelected}
             
-//            if (deckOnTable.count <= 9) {
-//
-//                if let newCards = deck.draw() {
-//                    deckOnTable.append(contentsOf: newCards);
-//                }
-//            }
+            beingMatched.removeAll();
         }
     }
-    
-    
-    
-    
     
     //MARK: Actions
     @IBAction func touchHelp(_ sender: UIButton) {
@@ -162,7 +154,7 @@ class SetViewController: UIViewController, LayoutViews {
     private func prettifyButtons(_ button: UIButton, color: UIColor) {
         button.backgroundColor = color;
         button.layer.cornerRadius = 5;
-        button.layer.borderWidth = 1;
+        button.layer.borderWidth = 2;
         button.layer.borderColor = UIColor.black.cgColor;
     }
 }

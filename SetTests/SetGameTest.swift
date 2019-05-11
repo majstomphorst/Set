@@ -14,7 +14,7 @@ import XCTest
 class SetGameTest: XCTestCase {
     
     func testInit() {
-        var setGame = SetGame();
+        let setGame = SetGame();
         let deckOnTable = setGame.deckOnTable;
         
         XCTAssertFalse(deckOnTable.count == constDeck.empty.rawValue, "should not be empty");
@@ -38,9 +38,9 @@ class SetGameTest: XCTestCase {
         let card8 = SetCard(with: 2, 1, 1, 1);
         let card9 = SetCard(with: 3, 1, 2, 2);
         
-        let test1 = SetGame.isSet(cards: card1,card2,card3);
-        let test2 = SetGame.isSet(cards: card4,card5,card6);
-        let test3 = SetGame.isSet(cards: card7,card8,card9);
+        let test1 = SetGame.isSet(cards: [card1,card2,card3]);
+        let test2 = SetGame.isSet(cards: [card4,card5,card6]);
+        let test3 = SetGame.isSet(cards: [card7,card8,card9]);
         
         XCTAssertTrue(test1,"");
         XCTAssertTrue(test2,"");
@@ -48,7 +48,7 @@ class SetGameTest: XCTestCase {
     }
     
     func testFindSet() {
-        var setGame = SetGame();
+        let setGame = SetGame();
         
         _ = setGame.findSetOnTable();
     }

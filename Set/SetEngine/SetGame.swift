@@ -9,12 +9,14 @@
 import Foundation
 
 class SetGame {
-    var deckCount: Int { get { return deck.count; } }
     
     private var deck = SetCardDeck();
+    
     lazy var deckOnTable: [SetCard] = deck.draw(amount: .twelve) ?? [];
     public var matched = [SetCard]();
     public var hint = [SetCard]();
+    
+    var deckCount: Int { get { return deck.count; } }
     
     public func dealThreeMoreCards() -> [SetCard]? {
         if let cards = deck.draw() {
@@ -23,36 +25,6 @@ class SetGame {
         }
         return nil;
     }
-    
-//    public func chooseCard(card: SetCard) {
-//
-//        let index = beingMatched.firstIndex(of: card);
-//        if index == nil {
-//            beingMatched.append(card);
-//        } else {
-//            beingMatched.remove(at: index!);
-//        }
-//
-//        if beingMatched.count >= 3 {
-//
-//            // is there a set?
-//            if (SetGame.isSet(cards: beingMatched)) {
-//                matched.append(contentsOf: beingMatched);
-//                let copyBeingMatched = beingMatched;
-//                deckOnTable.removeAll { copyBeingMatched.contains($0) }
-//            }
-//
-//            beingMatched.removeAll();
-//
-//            if (deckOnTable.count <= 9) {
-//
-//                if let newCards = deck.draw() {
-//                    deckOnTable.append(contentsOf: newCards);
-//                }
-//            }
-//        }
-//
-//    }
     
     /// ???
     private typealias ProperyFunction<T:Hashable> = (SetCard) -> T;
@@ -106,6 +78,5 @@ class SetGame {
         }
         return solution;
     }
-    
     
 }
