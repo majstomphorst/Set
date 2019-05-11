@@ -30,7 +30,7 @@ import UIKit
     
     override func draw(_ rect: CGRect) {
         // create 3 rectengels to draw the shape in
-        let grid = Grid.init(layout: .dimensions(rowCount: 3, columnCount: 1), frame: bounds);
+        let grid = Grid.init(layout: .dimensions(rowCount: 3, columnCount: 1), frame: bounds.insetBy(dx: 8.0, dy: 8.0));
         
         if let card = card {
             for i in 0..<card.number.rawValue {
