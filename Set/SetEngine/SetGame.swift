@@ -15,6 +15,7 @@ class SetGame {
     lazy var deckOnTable: [SetCard] = deck.draw(amount: .twelve) ?? [];
     public var matched = [SetCard]();
     public var hint = [SetCard]();
+    public var beingMatched = [SetCard]();
     
     var deckCount: Int { get { return deck.count; } }
     
@@ -24,6 +25,29 @@ class SetGame {
             return cards
         }
         return nil;
+    }
+    
+    public func handleIsSetState() {
+        matched.append(contentsOf: beingMatched)
+        deckOnTable.removeAll { beingMatched.contains($0) }
+    }
+    
+    public func addOrRemoveForBeingMatched(for card: SetCard) {
+        let index = beingMatched.firstIndex(of: card);
+        if index == nil {
+            beingMatched.append(card);
+        } else {
+            beingMatched.remove(at: index!);
+        }
+    }
+    
+    public func getState(for card: SetCard) -> SetCardView.State {
+        if (beingMatched.contains(card)) {
+            return .selected
+        } else if (hint.contains(card)) {
+            return .hint;
+        }
+        return .notSelected;
     }
     
     /// ???
@@ -46,7 +70,7 @@ class SetGame {
     /// - Parameters: a list of SetCards
     /// - Returns: true if cards make a set false otherwise
     public static func isSet(cards: [SetCard]) -> Bool {
-        if (cards.count != 3) { return false; }
+        if (cards.count > 3) { return false; }
         
         return isSetOfProperties(cards: cards) { (card) -> SetCard.Number
                 in return card.number;
@@ -57,6 +81,10 @@ class SetGame {
             } && isSetOfProperties(cards: cards) { (card) -> SetCard.Color
                 in return card.color;
         };
+    }
+    
+    public func isSet() -> Bool {
+        return SetGame.isSet(cards: beingMatched);
     }
     
     /// find a set of card in the deck that is on table

@@ -16,8 +16,7 @@ class SetViewController: UIViewController, LayoutViews {
             deckOnTable.indices.forEach{ addSetCardView(for: deckOnTable[$0]) }
         }
     }
-    var cardButtons: [SetCardView] = []
-    var beingMatched = [SetCard]();
+    var cardButtons: [SetCardView] = [];
     
     // MARK: Outlests
     @IBOutlet var mainView: UIView!
@@ -64,21 +63,12 @@ class SetViewController: UIViewController, LayoutViews {
         gridView.addSubview(cardView);
     }
     
-    private func getCardState(for card: SetCard) -> SetCardView.State {
-        if (beingMatched.contains(card)) {
-            return .selected
-        } else if (setGame.hint.contains(card)) {
-            return .hint;
-        }
-        return .notSelected;
-    }
-    
     @objc func handleTapOnCard(_ recognizer: UITapGestureRecognizer) {
         switch recognizer.state {
         case .ended:
             if let chosenCardView = recognizer.view as? SetCardView {
-                choosenCard(card: chosenCardView.card!)
-                chosenCardView.state = getCardState(for: chosenCardView.card!);
+                choosenCardView(cardView: chosenCardView);
+                chosenCardView.state = setGame.getState(for: chosenCardView.card!);
             }
         default:
             break;
@@ -86,26 +76,21 @@ class SetViewController: UIViewController, LayoutViews {
 
     }
     
-    func choosenCard(card: SetCard) {
+    func choosenCardView(cardView: SetCardView) {
         
-        let index = beingMatched.firstIndex(of: card);
-        if index == nil {
-            beingMatched.append(card);
-        } else {
-            beingMatched.remove(at: index!);
-        }
+        setGame.addOrRemoveForBeingMatched(for: cardView.card!);
         
-        if beingMatched.count >= 3 {
+        if setGame.beingMatched.count >= 3 {
             
             // is there a set?
-            if (SetGame.isSet(cards: beingMatched)) {
+            if (setGame.isSet()) {
+                
                 // model
-                setGame.matched.append(contentsOf: beingMatched)
-                setGame.deckOnTable.removeAll { beingMatched.contains($0) }
+                setGame!.handleIsSetState();
                 
                 // view
                 cardButtons.removeAll { (cardButton) -> Bool in
-                    if (beingMatched.contains(cardButton.card!)){
+                    if (setGame.beingMatched.contains(cardButton.card!)){
                         cardButton.removeFromSuperview();
                         return true;
                     }
@@ -121,7 +106,7 @@ class SetViewController: UIViewController, LayoutViews {
             
             cardButtons.forEach {$0.state = .notSelected}
             
-            beingMatched.removeAll();
+           setGame.beingMatched.removeAll();
         }
     }
     
