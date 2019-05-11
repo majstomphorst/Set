@@ -29,7 +29,7 @@ class SetViewController: UIViewController, LayoutViews {
     override func viewDidLoad() {
         super.viewDidLoad();
         setGame = SetGame();
-        mainView.backgroundColor = Util.theme.mainBackground.color;
+        mainView.backgroundColor = Theme.mainBackground;
         prettifyButtons(helpButton, color: .gray);
         prettifyButtons(newGameButton, color: .green);
         prettifyButtons(threeMoreCardsButton, color: .darkGray);
@@ -73,7 +73,6 @@ class SetViewController: UIViewController, LayoutViews {
         default:
             break;
         }
-
     }
     
     func choosenCardView(cardView: SetCardView) {

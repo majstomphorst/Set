@@ -115,20 +115,20 @@ import UIKit
         if card != nil {
             switch card!.color {
             case .green:
-                Util.theme.icon1.color.setFill()
-                Util.theme.icon1.color.setStroke()
+                Theme.icon1.setFill()
+                Theme.icon1.setStroke()
             case .purple:
-                Util.theme.icon2.color.setFill()
-                Util.theme.icon2.color.setStroke()
+                Theme.icon2.setFill()
+                Theme.icon2.setStroke()
             case .red:
-                Util.theme.icon3.color.setFill()
-                Util.theme.icon3.color.setStroke()
+                Theme.icon3.setFill()
+                Theme.icon3.setStroke()
             }
         }
     }
     
     private func setBasicLayoutForBorder () {
-        backgroundColor = Util.theme.cardBackground.color
+        backgroundColor = Theme.cardBackground;
         layer.borderWidth = Util.borderWidth;
         layer.cornerRadius = Util.cornerRadius
     }

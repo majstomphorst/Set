@@ -25,10 +25,10 @@ class GridView: UIView {
         let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius);
         roundedRect.addClip();
         
-        Util.theme.gridBackground.color.setFill()
+        Theme.gridBackground.setFill()
         roundedRect.fill();
         
-        Util.theme.cardBackground.color.setStroke();
+        Theme.cardBackground.setStroke();
         roundedRect.stroke();
         
     }
