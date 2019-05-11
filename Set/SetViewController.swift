@@ -38,13 +38,13 @@ class SetViewController: UIViewController, LayoutViews {
     /// calculates the position and the dimensions of the cardViews(child) with in the grid view
     /// next is sets the cardViews in the correct position in the gridView(parent)
     func updateViewFromModel() {
-        var grid = Grid(layout: Grid.Layout.aspectRatio(0.7),
+        var grid = Grid(layout: Grid.Layout.aspectRatio(Metric.cardAspectRatio),
                         frame: gridView.bounds.insetBy(dx: gridView.cornerOffset,
                                                        dy: gridView.cornerOffset));
         grid.cellCount = setGame.deckOnTable.count;
         
         for index in cardButtons.indices {
-            cardButtons[index].frame = grid[index]?.insetBy(dx: 4, dy: 4) ?? CGRect.zero;
+            cardButtons[index].frame = grid[index]?.insetBy(dx: Metric.cardInset, dy: Metric.cardInset) ?? CGRect.zero;
         }
     }
     
@@ -137,8 +137,8 @@ class SetViewController: UIViewController, LayoutViews {
     
     private func prettifyButtons(_ button: UIButton, color: UIColor) {
         button.backgroundColor = color;
-        button.layer.cornerRadius = 5;
-        button.layer.borderWidth = 2;
+        button.layer.cornerRadius = Metric.cornerRadius;
+        button.layer.borderWidth = Metric.borderWidth;
         button.layer.borderColor = UIColor.black.cgColor;
     }
 }

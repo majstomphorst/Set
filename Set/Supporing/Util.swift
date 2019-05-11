@@ -19,11 +19,16 @@ struct Theme {
     static let icon3 = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1);
 }
 
+struct Metric {
+    static let borderWidth: CGFloat = 2.0;
+    static let cornerRadius: CGFloat = 8.0;
+    static let cardAspectRatio: CGFloat = 0.7;
+    static let cardInset: CGFloat = 4.0;
+}
+
 
 
 struct Util {
-    static var borderWidth: CGFloat = 2.0;
-    static var cornerRadius: CGFloat = 8.0;
     
     public static func getCirclePath(in bounds: CGRect) -> UIBezierPath {
         return UIBezierPath(ovalIn: bounds);
@@ -41,6 +46,4 @@ struct Util {
         path.close();
         return path;
     }
-    
-    
 }

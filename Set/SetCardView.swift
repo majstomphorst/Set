@@ -129,8 +129,8 @@ import UIKit
     
     private func setBasicLayoutForBorder () {
         backgroundColor = Theme.cardBackground;
-        layer.borderWidth = Util.borderWidth;
-        layer.cornerRadius = Util.cornerRadius
+        layer.borderWidth = Metric.borderWidth;
+        layer.cornerRadius = Metric.cornerRadius
     }
     
     override init(frame: CGRect) {
