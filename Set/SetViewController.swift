@@ -68,7 +68,9 @@ class SetViewController: UIViewController, LayoutViews {
         case .ended:
             if let chosenCardView = recognizer.view as? SetCardView {
                 choosenCardView(cardView: chosenCardView);
-                chosenCardView.state = setGame.getState(for: chosenCardView.card!);
+                
+                UIView.transition(with: chosenCardView, duration: 0.5, options: .transitionFlipFromLeft,
+                                  animations: { chosenCardView.state = self.setGame.getState(for: chosenCardView.card!) })
             }
         default:
             break;

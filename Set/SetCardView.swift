@@ -30,7 +30,7 @@ import UIKit
     
     override func draw(_ rect: CGRect) {
         // create 3 rectengels to draw the shape in
-        let grid = Grid.init(layout: .dimensions(rowCount: 3, columnCount: 1), frame: bounds.insetBy(dx: 8.0, dy: 8.0));
+        let grid = Grid.init(layout: .dimensions(rowCount: 3, columnCount: 1), frame: bounds.insetBy(dx: Metric.cardInset, dy: Metric.cardInset));
         
         if let card = card {
             for i in 0..<card.number.rawValue {
@@ -55,9 +55,11 @@ import UIKit
     private func updateViewForState() {
         switch state {
         case .notSelected:
-            layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0);
+            backgroundColor = Theme.cardBackground;
         case .selected:
             layer.borderColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1);
+            backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1);
         case .hint:
             let flash = CABasicAnimation(keyPath: "opacity")
             flash.duration = 0.5
